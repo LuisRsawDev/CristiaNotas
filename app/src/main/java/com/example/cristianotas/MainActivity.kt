@@ -5,7 +5,8 @@ import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.activity.enableEdgeToEdge
 import androidx.compose.foundation.background
-import androidx.compose.foundation.layout.Box
+import androidx.compose.foundation.lazy.items
+
 import androidx.compose.foundation.layout.Column
 //import androidx.compose.foundation.layout.FlowRowScopeInstance.align
 import androidx.compose.foundation.layout.Spacer
@@ -13,11 +14,11 @@ import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.heightIn
 import androidx.compose.foundation.layout.padding
-import androidx.compose.foundation.layout.size
-import androidx.compose.material3.Button
-import androidx.compose.ui.text.googlefonts.Font
+import androidx.compose.foundation.lazy.LazyColumn
+
+
 //import androidx.compose.material3.ButtonColors
-import androidx.compose.material3.ButtonDefaults
+
 import androidx.compose.material3.Text
 //import androidx.compose.material3.TopAppBar
 //import androidx.compose.material3.rememberTopAppBarState
@@ -37,64 +38,70 @@ import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
-import androidx.constraintlayout.compose.ConstraintLayout
 
-val  provider = GoogleFont.Provider(
+
+/*val  provider = GoogleFont.Provider(
 providerAuthority = "com.google.android.gms.fonts",
 providerPackage = "com.google.android.gms",
 certificates = R.array.com_google_android_gms_fonts_certs
-)
+)*/
 /*
 val fontName = GoogleFont("Lobster Two")
 
 val fontFamily = FontFamily(
     Font(googleFont = fontName, fontProvider = provider)
 )*/
-
+var a:Int=5; //con esta variable defino del ancho de los items
+var i:Int=1;
+var Pantalla1 = DisenoPanta() //Se declara el objeto pantalla 1
+var listacanciones:Array<String> = arrayOf("  ","Aquí Estás","Al Estar ante Ti",
+    "Anhelo Conocerte Espíritu Santo",
+    "Adorarte, Quiero Adorarte","Al que está Sentado en el Trono","Al Borde de tu Gran Trono",
+    "A tus pies","Cuan Grande es Dios","Como Zaqueo","Con mis Manos Levantadas","Como Dijiste",
+    "Cuerdas de Amor",
+    "Cerca de Ti","De tal Manera me Amó","Digno y Santo","Dios Quiero más de ti", "Creo en Ti",
+    "Dios de lo Imposible", "De Gloria en Gloria te Veo","Dios es Rey","Digno",
+    "El Espíritu de Dios Está", "Entra en la Presencia","En mi Corazón hay una Canción",
+    "El es Jesús", "Eres mi Respirar","Jeshua","Llena éste Lugar","Levanto mis Manos",
+    "Mereces la Gloria", "La Tierra Canta", "Más el Dios de toda Gracia",
+    "Me has tomado en tus Brazos","No por Obras","Por un Momento en tu Presencia",
+    "Perfume a tus Pies","Precioso Jesús","Padre, la Alabanza","Renuevame",
+    "Si tu Presencia conmigo no va", "Sentado en su Trono","Señor de Señores")
+//hasta señor de señores son
 class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         enableEdgeToEdge()
         setContent {
-            VentanaPrin()
-            Barcontrain()
+
+            Pantalla1.EstructuraPan()
+            Listadesplazado()
         }
     }
 }
 
 @Composable
-fun VentanaPrin() {
-    Column(
-        Modifier
-            .fillMaxSize()
-            .background(Color(56, 192, 179, 255)),
-        horizontalAlignment = Alignment.CenterHorizontally
+fun Listadesplazado() {
 
-    ) { //Se determina la barra superior como una columna
-        Column(
-            Modifier
-                .fillMaxWidth()
-                .background(Color(66, 7, 173, 255))) {
-            Spacer(modifier = Modifier.padding(25.dp))
 
+    LazyColumn(modifier = Modifier.padding(10.dp,120.dp)) {
+        // Add a single item
+        for(i in 1..42) {
+            item {
+                Text(
+                    text = listacanciones[i],
+                    fontSize = 20.sp,
+                    color = Color.White,
+                    modifier = Modifier.padding(0.dp, a.dp)
+                )
+            }
         }
-        Column(
-            Modifier
-                .fillMaxWidth()
-                .background(Color(87, 82, 94, 255))
-             )
-
-        {
-            Spacer(modifier = Modifier.padding(10.dp))
-
-
-        }
-       
-
-        Spacer(modifier = Modifier.heightIn(50.dp))
-        EscribirTextos("Bienvenido a Cristianotas, una plataforma muy \n intuitiva  para aprender canciones Cristianas", color = Color(255, 255, 255))
     }
 }
+
+
+       // EscribirTextos("Bienvenido a Cristianotas, una plataforma muy \n intuitiva  para aprender canciones Cristianas", color = Color(255, 255, 255))
+
 
 
 @Composable
@@ -128,73 +135,11 @@ fun EscribirTextos(name: String, color: Color) {
 
     )
 
-@Composable
-fun Barcontrain(){
-        ConstraintLayout(Modifier.fillMaxSize()){
-            val offset= Offset(3.0f,5.0f)
-            val(barraMoradasup,barrainfe,barraMoradainf,barraSup)=createRefs()
-            val (text,boton) = createRefs()
-            //Box(Modifier.size(100.dp).background(Color.Green).constrainAs(cverde){})
-            //Box(Modifier.size(100.dp).background(Color.Blue).constrainAs(cazul){})
-           // Box(Modifier.size(100.dp).background(Color.Magenta).constrainAs(cmorado){})
-            Box(Modifier.size(500.dp,45.dp).background(Color(131, 90, 183, 255)).constrainAs(barraSup){
-                top.linkTo(parent.top)
-                start.linkTo(parent.start)
-                end.linkTo(parent.end)
-
-            })
-
-            Box(Modifier.size(500.dp,60.dp).background(Color(72, 11, 180, 255)).constrainAs(barraMoradasup){
-                top.linkTo(barraSup.bottom)
-
-
-            })
-
-
-            Box(Modifier.size(500.dp,10.dp).background(Color(131, 99, 183, 255)).constrainAs(barrainfe){
-                bottom.linkTo(parent.bottom)
-
-
-            })
-
-            Box(Modifier.size(500.dp,70.dp).background(Color(72, 11, 180, 255)).constrainAs(barraMoradainf){
-                bottom.linkTo(barrainfe.top)
-
-
-            })
-
-            //DISEÑO DEL TEXTO DEL TITULO PRINCIPAL
-            Text("  CristiaNotas",Modifier.constrainAs(text){
-                top.linkTo(barraSup.bottom, margin = 20.dp)
-            },color = Color.White, fontSize = 20.sp,
-                style = TextStyle(shadow = Shadow(
-                color = Color.Black, offset = offset, blurRadius = 3f
-            )))
-                //DISEÑO DE UN BOTON
-            Button(
-                onClick = { /* Do something */ },
-                // Assign reference "button" to the Button composable
-                // and constrain it to the top of the ConstraintLayout
-               modifier =  Modifier.constrainAs(boton) {
-                   //  top.linkTo(barraSup.top, margin = 14.dp)
-                   end.linkTo(barraSup.end, margin = 1.dp)
-                   top.linkTo(barraMoradasup.top, margin = 2.dp)
-                 },colors = ButtonDefaults.textButtonColors(
-                    contentColor = Color(64, 12, 157, 255)
-                )){ Text(". . .",fontWeight = FontWeight.ExtraBold,color = Color.White, fontSize = 15.sp,
-                style = TextStyle(shadow = Shadow(
-                    color = Color.Black, offset = offset, blurRadius = 3f
-                ))) }
-
-        }
-
-}
-
 
 @Preview(showSystemUi = true)
 @Composable
 fun MostrarPreview() {
-    VentanaPrin()
-    Barcontrain()
+    Pantalla1.EstructuraPan()
+    Listadesplazado()
 }
 
