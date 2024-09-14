@@ -5,15 +5,11 @@ import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.activity.enableEdgeToEdge
 import androidx.compose.foundation.background
+import androidx.compose.foundation.layout.*
+//import androidx.compose.foundation.layout.FlowRowScopeInstance.align
 import androidx.compose.foundation.lazy.items
 
-import androidx.compose.foundation.layout.Column
 //import androidx.compose.foundation.layout.FlowRowScopeInstance.align
-import androidx.compose.foundation.layout.Spacer
-import androidx.compose.foundation.layout.fillMaxSize
-import androidx.compose.foundation.layout.fillMaxWidth
-import androidx.compose.foundation.layout.heightIn
-import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.lazy.LazyColumn
 
 
@@ -51,8 +47,9 @@ val fontName = GoogleFont("Lobster Two")
 val fontFamily = FontFamily(
     Font(googleFont = fontName, fontProvider = provider)
 )*/
-var a:Int=5; //con esta variable defino del ancho de los items
-var i:Int=1;
+var a:Int=5 //con esta variable defino del ancho de los items
+var i:Int=1
+var a2:Int=10
 var Pantalla1 = DisenoPanta() //Se declara el objeto pantalla 1
 var listacanciones:Array<String> = arrayOf("  ","Aquí Estás","Al Estar ante Ti",
     "Anhelo Conocerte Espíritu Santo",
@@ -75,6 +72,7 @@ class MainActivity : ComponentActivity() {
         setContent {
 
             Pantalla1.EstructuraPan()
+
             Listadesplazado()
         }
     }
@@ -84,16 +82,24 @@ class MainActivity : ComponentActivity() {
 fun Listadesplazado() {
 
 
-    LazyColumn(modifier = Modifier.padding(10.dp,120.dp)) {
+    LazyColumn(modifier = Modifier.padding(start = a2.dp, end = a2.dp, bottom = 70.dp, top = 160.dp).fillMaxWidth()) {
+
+
+
+
         // Add a single item
         for(i in 1..42) {
             item {
+                Spacer(Modifier.size(3.dp))
+                Column (Modifier.background(color = Color(8, 74, 126, 255))){
+
                 Text(
                     text = listacanciones[i],
+                    textAlign = TextAlign.Center,
                     fontSize = 20.sp,
                     color = Color.White,
-                    modifier = Modifier.padding(0.dp, a.dp)
-                )
+                    modifier = Modifier.padding(0.dp, a.dp).fillMaxWidth()
+                )}
             }
         }
     }
