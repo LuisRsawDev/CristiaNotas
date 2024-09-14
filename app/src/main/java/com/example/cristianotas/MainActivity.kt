@@ -31,7 +31,7 @@ import androidx.compose.ui.graphics.Shadow
 import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.text.font.FontFamily
 import androidx.compose.ui.text.font.FontWeight
-import androidx.compose.ui.text.googlefonts.Font
+
 import androidx.compose.ui.text.googlefonts.GoogleFont
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.tooling.preview.Preview
@@ -44,12 +44,12 @@ providerAuthority = "com.google.android.gms.fonts",
 providerPackage = "com.google.android.gms",
 certificates = R.array.com_google_android_gms_fonts_certs
 )
-
+/*
 val fontName = GoogleFont("Lobster Two")
 
 val fontFamily = FontFamily(
     Font(googleFont = fontName, fontProvider = provider)
-)
+)*/
 
 class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -92,7 +92,7 @@ fun VentanaPrin() {
        
 
         Spacer(modifier = Modifier.heightIn(50.dp))
-        EscribirTextos("Mi Amado Descendió", color = Color(255, 255, 255))
+        EscribirTextos("Bienvenido a Cristianotas, una plataforma muy \n intuitiva  para aprender canciones Cristianas", color = Color(255, 255, 255))
     }
 }
 
@@ -102,10 +102,10 @@ fun EscribirTextos(name: String, color: Color) {
     val offset= Offset(3.0f,5.0f)
     Text(
         text = name, color = color,
-        fontSize = 20.sp,
+        fontSize = 15.sp,
         textAlign = TextAlign.Center,
         //modifier = width,
-        fontFamily = MerriFontFamily, fontWeight = FontWeight.Bold,
+        fontFamily = MerriFontFamily, fontWeight = FontWeight.Light,
         style = TextStyle(
 
                     shadow = Shadow(
@@ -121,10 +121,10 @@ fun EscribirTextos(name: String, color: Color) {
 
     val MerriFontFamily = FontFamily(
 
-        Font(R.font.librebaskerville_italic, FontWeight.Medium),
-        Font(R.font.librebaskerville_regular, FontWeight.Light),
-        Font(R.font.merriweather_blackitalic, FontWeight.Normal),
-        Font(R.font.merriweather_bold, FontWeight.Bold)
+        //Font(R.font.librebaskerville_italic, FontWeight.Medium),
+        Font(R.font.merriweather_regular, FontWeight.Normal),
+        //Font(R.font.merriweather_blackitalic, FontWeight.Normal),
+       // Font(R.font.merriweather_bold, FontWeight.Bold)
 
     )
 
@@ -132,7 +132,7 @@ fun EscribirTextos(name: String, color: Color) {
 fun Barcontrain(){
         ConstraintLayout(Modifier.fillMaxSize()){
             val offset= Offset(3.0f,5.0f)
-            val(barraMoradasup,barrainfe,barraMoradainf,cmorado,barraSup)=createRefs()
+            val(barraMoradasup,barrainfe,barraMoradainf,barraSup)=createRefs()
             val (text,boton) = createRefs()
             //Box(Modifier.size(100.dp).background(Color.Green).constrainAs(cverde){})
             //Box(Modifier.size(100.dp).background(Color.Blue).constrainAs(cazul){})
@@ -181,7 +181,10 @@ fun Barcontrain(){
                    top.linkTo(barraMoradasup.top, margin = 2.dp)
                  },colors = ButtonDefaults.textButtonColors(
                     contentColor = Color(64, 12, 157, 255)
-                )){ Text(". . .",fontWeight = FontWeight.ExtraBold,color = Color.White, fontSize = 15.sp) }
+                )){ Text(". . .",fontWeight = FontWeight.ExtraBold,color = Color.White, fontSize = 15.sp,
+                style = TextStyle(shadow = Shadow(
+                    color = Color.Black, offset = offset, blurRadius = 3f
+                ))) }
 
         }
 
