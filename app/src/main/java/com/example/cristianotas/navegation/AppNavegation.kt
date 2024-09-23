@@ -7,8 +7,8 @@ import androidx.navigation.compose.composable
 
 import androidx.navigation.compose.rememberNavController
 import androidx.navigation.navArgument
-import com.example.cristianotas.pantallas.Screen1
-import com.example.cristianotas.pantallas.Screen2
+import com.example.cristianotas.pantallas.PantallaPrincipal
+import com.example.cristianotas.pantallas.PantallaSecundaria
 
 @Composable
 fun AppNavegation(){
@@ -16,17 +16,17 @@ fun AppNavegation(){
         
         NavHost(
                 navController = navController,
-                startDestination = AppsScreen.Screen1.route
+                startDestination = AppsScreen.PantallaPrincipal.route
         ){
-                composable(route = AppsScreen.Screen1.route){
-                        Screen1(navController)
+                composable(route = AppsScreen.PantallaPrincipal.route){
+                        PantallaPrincipal(navController)
                 }
-                composable(route = AppsScreen.Screen2.route + "/{text}",
+                composable(route = AppsScreen.PantallaSecundaria.route + "/{text}",
                        arguments = listOf(navArgument(name = "text"){
                                type = NavType.StringType
                        })
                 ){
-                       Screen2(navController,it.arguments?.getString("text"))
+                       PantallaSecundaria(navController,it.arguments?.getString("text"))
                 }
         }
 

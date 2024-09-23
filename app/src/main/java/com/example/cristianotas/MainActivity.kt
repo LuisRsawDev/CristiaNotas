@@ -2,11 +2,9 @@ package com.example.cristianotas
 
 import android.os.Bundle
 
-import android.widget.Toast
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.activity.enableEdgeToEdge
-import androidx.activity.viewModels
 import androidx.compose.animation.AnimatedVisibility
 import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
@@ -35,7 +33,6 @@ import androidx.compose.material3.Text
 //import androidx.compose.material3.rememberTopAppBarState
 import androidx.compose.ui.text.font.Font
 import androidx.compose.runtime.Composable
-import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
@@ -59,9 +56,6 @@ import androidx.compose.ui.unit.sp
 import androidx.navigation.NavController
 import com.example.cristianotas.navegation.AppNavegation
 import com.example.cristianotas.navegation.AppsScreen
-import kotlinx.coroutines.delay
-import kotlinx.coroutines.selects.select
-import java.nio.channels.Selector
 
 
 /*val  provider = GoogleFont.Provider(
@@ -94,13 +88,8 @@ class MainActivity : ComponentActivity() {
         enableEdgeToEdge()
         setContent {
 
-          //  Pantalla1.EstructuraPan()
-
-
-
-           // MotrarInitexto()
             AppNavegation()
-           // SearchView(viewModel)
+
 
         }
 
@@ -111,7 +100,6 @@ class MainActivity : ComponentActivity() {
 @Composable
 fun MotrarInitexto(){
     val offset= Offset(3.0f,5.0f)
-
     activarani=true
     /*LaunchedEffect(key1 = true) {
         delay(1000)
@@ -135,11 +123,6 @@ fun MotrarInitexto(){
                         )
                     )
                 )
-
-               /* LaunchedEffect(key1 = true) {
-                        delay(2000)
-                    activarani=false
-                }*/
 
             }
 
@@ -171,7 +154,6 @@ fun SearchView(viewModel: Buscadordecanciones, navController:NavController){
                 Text(
                     text = "Buscar Canciones"
 
-
                 )
             },
             maxLines = 1,
@@ -187,10 +169,7 @@ fun SearchView(viewModel: Buscadordecanciones, navController:NavController){
                  )
             },
             shape = RoundedCornerShape(8.dp),
-
-
         )
-
         LazyColumn(
             modifier = Modifier
                 .fillMaxSize()
@@ -226,15 +205,13 @@ fun SearchView(viewModel: Buscadordecanciones, navController:NavController){
                                     .weight(1f)
                                     .clickable {
 
-                                        Toast.makeText(
+                                      /*  Toast.makeText(
                                             context2,
                                             "Click en: '${it.nombrecancion}'",
                                             Toast.LENGTH_SHORT
-
-
-                                        ).show()
+                                        ).show()*/
                                         datopro= it.nombrecancion
-                                        navController.navigate(route = AppsScreen.Screen2.route + "/${datopro}")
+                                        navController.navigate(route = AppsScreen.PantallaSecundaria.route + "/${datopro}")
                                    }
 
                             )

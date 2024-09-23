@@ -11,15 +11,17 @@ import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.tooling.preview.Preview
 import androidx.navigation.NavController
 import com.example.cristianotas.Pantalla1
+import com.example.cristianotas.navegation.AppNavegation
 
 @OptIn(ExperimentalMaterial3Api::class)
 @SuppressLint("UnusedMaterial3ScaffoldPaddingParameter")
 @Composable
-fun Screen2(navController: NavController,text:String?){
+fun PantallaSecundaria(navController: NavController, text:String?){
     Scaffold(){
-        Pantalla1.EstructuraPan()
+        Pantalla1.EstructuraPan(1)
         SegundaBodyContent(navController,text)
     }
 }
@@ -29,14 +31,15 @@ fun Screen2(navController: NavController,text:String?){
 fun SegundaBodyContent(navController: NavController,text: String?){
     Column(modifier = Modifier.fillMaxSize(), verticalArrangement = Arrangement.Center,
         horizontalAlignment = Alignment.CenterHorizontally) {
-        Text("Estoy en la segunda pantalla")
+        Text("Has accedido a:")
         text?.let{
             Text(it)
         }
-        Button(onClick = {
+        /*Button(onClick = {
             navController.popBackStack()
         }) {
             Text("volver atras")
-        }
+        }*/
     }
 }
+
