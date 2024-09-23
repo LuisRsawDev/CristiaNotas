@@ -138,7 +138,7 @@ if(control1==0){
                 )
             ) {
                 Icon(
-                    Icons.Default.Menu,
+                    Icons.Default.MoreVert,
                     contentDescription = null,
                     modifier = Modifier.size(tamiconos.dp),
                     tint = Color.White
