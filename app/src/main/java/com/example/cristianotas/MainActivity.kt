@@ -56,7 +56,9 @@ import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import androidx.navigation.NavController
 import com.example.cristianotas.navegation.AppNavegation
+import com.example.cristianotas.navegation.AppsScreen
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.selects.select
 import java.nio.channels.Selector
@@ -80,7 +82,7 @@ var tltip:Int=10
 var Pantalla1 = DisenoPanta() //Se declara el objeto pantalla 1
 val viewModel =Buscadordecanciones()
 var activarani:Boolean=false
-
+var datopro:String="dato"
 
 
 
@@ -147,7 +149,7 @@ fun MotrarInitexto(){
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
-fun SearchView(viewModel: Buscadordecanciones){
+fun SearchView(viewModel: Buscadordecanciones, navController:NavController){
     var textobusqueda by remember { mutableStateOf("") }
     val context2 = LocalContext.current
 
@@ -231,7 +233,9 @@ fun SearchView(viewModel: Buscadordecanciones){
 
 
                                         ).show()
-                                    }
+                                        datopro= it.nombrecancion
+                                        navController.navigate(route = AppsScreen.Screen2.route + "/${datopro}")
+                                   }
 
                             )
                             
