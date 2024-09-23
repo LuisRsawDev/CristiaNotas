@@ -15,7 +15,9 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
 import androidx.navigation.NavController
 import com.example.cristianotas.Pantalla1
+import com.example.cristianotas.SearchView
 import com.example.cristianotas.navegation.AppsScreen
+import com.example.cristianotas.viewModel
 
 @SuppressLint("UnusedMaterial3ScaffoldPaddingParameter")
 @Composable
@@ -23,6 +25,8 @@ fun Screen1(navController: NavController){
     Scaffold() {
         Pantalla1.EstructuraPan()
             BodyContent(navController)
+      //  SearchView(viewModel)
+
 
     }
 }
@@ -33,7 +37,7 @@ fun BodyContent(navController: NavController){
             horizontalAlignment = Alignment.CenterHorizontally) {
             Text("Hola Navegación")
             Button(onClick = {
-                navController.navigate(route = AppsScreen.Screen2.route)
+                navController.navigate(route = AppsScreen.Screen2.route + "/este es el dato enviado")
             }) {
                 Text("Navega")
             }

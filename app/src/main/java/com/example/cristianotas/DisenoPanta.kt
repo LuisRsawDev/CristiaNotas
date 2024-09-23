@@ -1,14 +1,15 @@
 package com.example.cristianotas
 
+import androidx.compose.animation.AnimatedVisibility
+import androidx.compose.animation.slideInVertically
+import androidx.compose.animation.slideOutVertically
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Row
-import androidx.compose.foundation.layout.fillMaxHeight
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
-import androidx.compose.foundation.layout.offset
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.width
 import androidx.compose.material.icons.Icons
@@ -17,36 +18,40 @@ import androidx.compose.material.icons.filled.Favorite
 import androidx.compose.material.icons.filled.Home
 import androidx.compose.material.icons.filled.Menu
 import androidx.compose.material.icons.filled.Notifications
-import androidx.compose.material.icons.filled.Search
 import androidx.compose.material3.Button
 import androidx.compose.material3.ButtonDefaults
 import androidx.compose.material3.Icon
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.geometry.Offset
+import androidx.compose.ui.graphics.Brush
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.Shadow
-import androidx.compose.ui.layout.AlignmentLine
 import androidx.compose.ui.text.TextStyle
-import androidx.compose.ui.text.font.FontWeight
+import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.constraintlayout.compose.ConstraintLayout
+import com.example.cristianotas.navegation.AppNavegation
+import kotlinx.coroutines.delay
+import kotlin.system.measureTimeMillis
 
 open class DisenoPanta {
 
     @Composable
     fun EstructuraPan(){
         ConstraintLayout(Modifier.fillMaxSize()){
-            val offset= Offset(3.0f,5.0f)
-            val(barraMoradasup,barrainfe,barraMoradainf,barraSup,FondoContraint)=createRefs()
-            val (text,boton) = createRefs()
-            var ancho:Int=100
-            var ju:Int=736;//debe ser 730 es para el fondo
-            var tamiconos:Int=26;
+
+            val(barraMoradasup,barrainfe,barraMoradainf,barraSup,fondocontraint,somtexto)=createRefs()
+        
+            val ancho=100
+            val ju=736 //debe ser 736 es para el fondo
+            val tamiconos=26
+            val f=1
 
             Box(Modifier.size(500.dp,45.dp).background(Color(26, 8, 58, 255)).constrainAs(barraSup){
                 top.linkTo(parent.top)
@@ -64,11 +69,11 @@ open class DisenoPanta {
                     //DISEÑO DEL TEXTO DEL TITULO PRINCIPAL
                     Text("  CristiaNotas",
                         Modifier.fillMaxWidth(0.80f),
-                        color = Color.White, fontSize = 20.sp,
-                        style = TextStyle(shadow = Shadow(
+                        color = Color.White, fontSize = 15.sp,
+                       /* style = TextStyle(shadow = Shadow(
                             color = Color.Black, offset = offset, blurRadius = 3f
                         )
-                        )
+                        )*/
                     )
                     //DISEÑO DE UN BOTON
                     Button(
@@ -160,7 +165,13 @@ open class DisenoPanta {
 
             }
                     //Del valor de dP debe ser 750 pero por cuestiones de organizacion se deja en 650
-            Box(Modifier.size(500.dp,ju.dp).background(Color(19, 148, 204, 255)).constrainAs(FondoContraint){
+            Box(Modifier.size(500.dp,ju.dp).background(Brush.horizontalGradient(listOf(Color(
+                56,
+                160,
+                241,
+                255
+            ),Color(142, 195, 238, 255)
+            ))).constrainAs(fondocontraint){
                 top.linkTo(barraMoradasup.bottom)
                 bottom.linkTo(barraMoradainf.top)
 
@@ -176,11 +187,10 @@ open class DisenoPanta {
 
 
 
-
-
         }
 
     }
+
 
 
     @Preview(showSystemUi = true)
@@ -189,6 +199,7 @@ open class DisenoPanta {
         Pantalla1.EstructuraPan()
         // ListarCanciones(listacanciones)
         // SearchView(viewModel)
+        AppNavegation()
     }
 
 
